@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                // commands to build the project
+                sh 'mvn clean package'
+            }
+        }
+        stage('Test') {
+            steps {
+                // commands to run tests
+                sh 'mvn test'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                // commands to deploy application
+                sh 'ansible-playbook deploy.yaml'
+            }
+        }
+    }
+
